@@ -76,7 +76,7 @@ class TextPrepocessing
     function filtering()
     {
         include 'koneksi.php';
-        require_once('lib/Filtering.php');
+        require_once('lib/core/Filtering.php');
         mysqli_query($conn, "TRUNCATE filtering");
         $test = new Filtering();
         $masukkan3;
@@ -102,7 +102,7 @@ class TextPrepocessing
     function stemming()
     {
         include 'koneksi.php';
-        include 'lib/Stemming.php';
+        include 'lib/core/Stemming.php';
         $masukkan4;
         mysqli_query($conn, "TRUNCATE stemming");
         $query = mysqli_query($conn, "SELECT * FROM filtering") or die(mysqli_error($conn));
