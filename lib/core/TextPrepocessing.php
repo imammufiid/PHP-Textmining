@@ -54,7 +54,7 @@ class TextPrepocessing
 
     function filtering($resultTokenization)
     {
-        require_once('lib/Filtering.php');
+        require_once('Filtering.php');
         $filtering = new Filtering();
 
         $hasilFilter = [];
@@ -69,7 +69,7 @@ class TextPrepocessing
 
     function stemming($resultFiltering)
     {
-        include 'lib/Stemming.php';
+        include_once 'Stemming.php';
 
         $hasilStem = [];
         foreach (json_decode($resultFiltering) as $key => $value) {
