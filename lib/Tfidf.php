@@ -23,14 +23,31 @@ class Tfidf {
 
 
         // TES BANYAK DOKUMEN
+        
         foreach ($queryAnswerAll as $key => $val) {
             $intersect = array_intersect(json_decode($val['term']), $answerKey); // hasil kata setelah disamakan dengan kata kunci jawaban
             $countTermInDoc = array_count_values($intersect); // menghitung jumlah kata per dokumen
             $id_doc = $val['doc_id'];
 
+            $resultTerm = [];
             foreach ($countTermInDoc as $term => $count) {
+                
+                // -------------------------------
+                // $term = [
+                //     "term" => $term,
+                //     "count" => $count,
+                //     "weight" => 0
+                // ];
+                // array_push($resultTerm, $term);
+                // $encTerm = json_encode($resultTerm);
+                // -----------------------------------
+                
                 $masukan5 = mysqli_query($conn, "INSERT INTO tbindex (Term, DocId, Count) VALUES ('$term', '$id_doc', '$count')") or die(mysqli_error($conn));
             }
+            // -----------
+            // $masukan5 = mysqli_query($conn, "INSERT INTO tbindex (Term, DocId, Count) VALUES ('$encTerm', '$id_doc', '$count')") or die(mysqli_error($conn));
+            // unset($encTerm);
+            // -----------
         }
         return $masukan5;
     }
@@ -66,4 +83,6 @@ class Tfidf {
 
         return $masukan6;
     }
+
+
 }
